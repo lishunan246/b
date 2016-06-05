@@ -1,0 +1,39 @@
+syntax = "proto2";
+option cc_generic_services = true;
+
+message RPCRequest
+{
+    optional int32 clientID=1;
+    optional int32 object =2;
+    optional string method = 3;
+    optional int32 paramInt=4;
+    optional string paramString=5;
+    optional bool paramBool=6;
+    optional bytes paramBytes=7;
+}
+
+
+
+message RPCResponse {
+    optional int32 clientID=1;
+    optional int32 object=10;
+    optional bool success=2;
+    optional int32 resultInt=3;
+    optional string resultString=4;
+    optional bool resultBool=5;
+    optional bytes resultBytes=6;
+    optional bool isPushMessage=7;
+    optional string pushtype=8;
+    optional string pushmethod=9;
+}
+
+message PushMessage
+{
+    optional string type=1;
+    optional bytes messageBytes=2;
+}
+
+service EchoService {
+    rpc RPC(RPCRequest) returns(RPCResponse);
+}
+
